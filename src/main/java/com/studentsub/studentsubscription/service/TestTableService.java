@@ -1,39 +1,28 @@
 package com.studentsub.studentsubscription.service;
 
-import com.studentsub.studentsubscription.model.TestTable;
+import com.studentsub.studentsubscription.model.TestKeyValue;
+import com.studentsub.studentsubscription.repository.TestTableRepository;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+@Data
 @Service
-public class TestTableService implements ITestTableService{
-    @Override
-    public List<TestTable> list() {
-        return null;
+public class TestTableService {
+
+    private final TestTableRepository repository;
+
+    public TestTableService(TestTableRepository repository) {
+        this.repository = repository;
     }
 
-    @Override
-    public TestTable findById(Long id) {
-        return null;
-    }
+    public TestKeyValue get(long id) {
+        validate(id);
 
-    @Override
-    public TestTable create(TestTable table) {
-        return null;
-    }
+        if(id == 0){
+            return repository.get(-1);
+        }
 
-    @Override
-    public TestTable update(TestTable table, Long id) {
-        return null;
-    }
-
-    @Override
-    public void delete(Long id) {
-
-    }
-
-    @Override
-    public void deleteAll() {
-
+        return repository.get(id);
     }
 }

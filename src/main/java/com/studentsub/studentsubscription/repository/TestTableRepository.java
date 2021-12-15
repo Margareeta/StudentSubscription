@@ -1,10 +1,11 @@
 package com.studentsub.studentsubscription.repository;
 
-import com.studentsub.studentsubscription.model.TestTable;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.studentsub.studentsubscription.model.TestKeyValue;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TestTableRepository extends JpaRepository <TestTable, Long>{
-
+public class TestTableRepository {
+    public TestKeyValue get(long id){
+        return new TestKeyValue(id, "key"+id, "value"+id);
+    }
 }
