@@ -3,11 +3,12 @@ package com.studentsub.studentsubscription.service;
 import com.studentsub.studentsubscription.model.TestKeyValue;
 import com.studentsub.studentsubscription.repository.TestTableRepository;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Data
 @Service
+@Slf4j
 public class TestTableService {
 
     private final TestTableRepository repository;
@@ -19,15 +20,15 @@ public class TestTableService {
     public TestKeyValue get(long id) {
         validate(id);
 
-        if(id == 0){
-            return repository.getAllBy(-1L);
-        }
+        log.info("Try find KeyValue by id [{}]", id);
+        TestKeyValue result = repository.getById(id);
+        log.info("Found by id[{}]: [{}]", id, result);
 
-        return repository.getAllBy(id);
+        return result;
     }
 
-    private void validate(long id){
-        System.out.println(id);
-        if(id<0) throw new IllegalArgumentException("Id less than zero");
+    private void validate(long id) {
+        log.info("Validating id:[{}]", id);
+        if (id < 0) throw new IllegalArgumentException("Id less than zero");
     }
 }

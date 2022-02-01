@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 public interface TestTableRepository extends CrudRepository<TestKeyValue,Long> {
-   TestKeyValue getAllBy(Long id);
+   TestKeyValue getById(Long id);
 }
