@@ -20,9 +20,14 @@ public class TestTableService {
         validate(id);
 
         if(id == 0){
-            return repository.get(-1);
+            return repository.getAllBy(-1L);
         }
 
-        return repository.get(id);
+        return repository.getAllBy(id);
+    }
+
+    private void validate(long id){
+        System.out.println(id);
+        if(id<0) throw new IllegalArgumentException("Id less than zero");
     }
 }

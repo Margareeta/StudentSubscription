@@ -20,7 +20,6 @@ public class TestTableController {
     }
 
     @GetMapping("/get")
-    @RequestBody
     public TestKeyValue getData(Long id) {
 
         long parsedId = id == null ? DEFAULT_ID : id;
